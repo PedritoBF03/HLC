@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  web:
+    container_name: servidorweb
+    image: ub-base-apache2
+    # build: 
+    #   context: ${DIR_DFILES}/apache/
+    #   dockerfile: ./Dockerfile
+    env_file: 
+      - ./.env
+    ports: 
+      - ${PUERTO}:80
+    networks: 
+      netapache:
+          ipv4_address: 172.130.10.3
+networks: 
+  netapache:
+      ipam: 
+          driver: default
+          config: 
+              - subnet: 172.130.10.0/24 
